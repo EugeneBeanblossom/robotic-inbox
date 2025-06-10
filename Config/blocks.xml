@@ -2,7 +2,7 @@
     <append xpath="/blocks">
         <!-- *** Robotic Inboxes -->
         <block name="cntRoboticInbox">
-            <property name="CreativeMode" value="Player" />
+            <property name="CreativeMode" value="None" />
             <property name="Class" value="CompositeTileEntity" />
             <property class="CompositeFeatures">
                 <property class="TEFeatureStorage">
@@ -322,7 +322,7 @@
         <!-- *** ROBOTIC_INBOX_VARIANT_HELPER -->
         <block name="cntRoboticInboxVariantHelper">
             <property name="Extends" value="cntRoboticInbox" />
-            <property name="CreativeMode" value="None" />
+            <property name="CreativeMode" value="Player" />
 
             <property name="CustomIcon" value="cntWasherClosed" />
             <property name="CustomIconTint" value="007fff" />

@@ -2,6 +2,7 @@
 using RoboticInbox.Utilities;
 using System;
 using System.Reflection;
+using static ModEvents;
 
 namespace RoboticInbox
 {
@@ -32,7 +33,7 @@ namespace RoboticInbox
             }
         }
 
-        private void OnGameStartDone()
+        private void OnGameStartDone(ref SGameStartDoneData args)
         {
             try
             {
@@ -45,13 +46,14 @@ namespace RoboticInbox
             }
         }
 
-        private void OnPlayerSpawnedInWorld(ClientInfo clientInfo, RespawnType respawnType, Vector3i pos)
+        //private void OnPlayerSpawnedInWorld(ClientInfo clientInfo, RespawnType respawnType, Vector3i pos)
+        private void OnPlayerSpawnedInWorld(ref SPlayerSpawnedInWorldData args)
         {
             try
             {
-                if (clientInfo == null)
+                if (args.ClientInfo == null)
                 {
-                    switch (respawnType)
+                    switch (args.RespawnType)
                     {
                         case RespawnType.NewGame: // local player creating a new game
                         case RespawnType.LoadedGame: // local player loading existing game
@@ -66,12 +68,12 @@ namespace RoboticInbox
                 }
                 else
                 {
-                    if (!GameManager.Instance.World.Players.dict.TryGetValue(clientInfo.entityId, out var player) || !player.IsAlive())
+                    if (!GameManager.Instance.World.Players.dict.TryGetValue(args.ClientInfo.entityId, out var player) || !player.IsAlive())
                     {
                         return; // player not found or player not ready
                     }
 
-                    switch (respawnType)
+                    switch (args.RespawnType)
                     {
                         case RespawnType.EnterMultiplayer: // first-time login for new player
                         case RespawnType.JoinMultiplayer: // existing player rejoining

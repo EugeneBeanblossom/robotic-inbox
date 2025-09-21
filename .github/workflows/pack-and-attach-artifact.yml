@@ -10,11 +10,10 @@ on:
       server_version:
         description: '7DTD Server Version'
         required: true
-        default: '1.4-b8'
+        default: '2.3-b9'
         type: choice
         options:
-          - '1.4-b8'
-          - '1.3-b9'
+          - '2.3-b9'
 
 permissions:
   contents: write
